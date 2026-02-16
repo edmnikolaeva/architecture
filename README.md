@@ -8,12 +8,12 @@
 
 ---
 
-**CONTEXT**
-- **Application:** Mobile app for an online grocery store  
-- **Backend:** Microservices architecture
+**CONTEXT:**
+- Application - mobile app for an online grocery store  
+- Backend - microservices architecture
 - The diagram shows the flow of push notifications from the backend services to the user device  
 
-**ARCHITECTURE INCLUDES**
+**ARCHITECTURE INCLUDES:**
 - Microservices
 - Load Balancer
 - API Gateway
@@ -24,7 +24,7 @@
 - Delivery Workers
 - Push Provider
 
-**STEPS**
+**STEPS:**
 1. User opens the mobile application  
 2. Load Balancer receives the request and forwards it to a free API Gateway instance  
 3. Authorization starts via AuthServer (JWT token is generated, pushToken is stored in Redis)  
