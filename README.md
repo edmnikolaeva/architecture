@@ -30,9 +30,9 @@
 7. User lands on the main page and can navigate between screens  
 8. On navigating to another page, API Gateway and ServiceRegistry check the user token again  
 9. For catalog searches, ElasticSearch is used for faster access  
-10. If the user had items in the cart that were not paid for  
-11. Cart emits an "order not completed" event to Kafka  
-12. Notification Service, subscribed to the topic, retrieves the pushToken from Redis and forwards the message to Delivery Workers  
+10. Perhaps user had items in the cart that were not paid for  
+11. Cart create an "order not completed" event and forward it to Kafka  
+12. Notification Service, subscribed to the topic, "hears" this, retrieves the message, gets pushToken from Redis and forwards the message to Delivery Workers  
 13. Delivery Workers make an HTTP request to the external Push Provider  
 14. If delivery fails after several retries, the message goes to DLQ  
 15. If successful, Push Provider delivers the notification to the user’s device
