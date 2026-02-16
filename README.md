@@ -1,0 +1,38 @@
+# Push Notifications Architecture – System Analysis Examples
+- This repository presents a high-level architecture diagram of push notification delivery in a mobile application, illustrated as a block diagram
+- This diagram helps to understand how push notifications are processed and delivered in a microservices backend, ensuring reliability and scalability
+
+👉 [View block diagram](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt)
+
+### CONTEXT
+- **Application:** Mobile app for an online grocery store  
+- **Backend:** Microservices architecture
+- The diagram shows the flow of push notifications from the backend services to the user device  
+
+### ARCHITECTURE INCLUDES
+- Microservices
+- Load Balancer
+- API Gateway
+- AuthServer
+- Service Registry
+- Message Broker
+- Notification Service
+- Delivery Workers
+- Push Provider
+
+### STEPS
+1. User opens the mobile application  
+2. Load Balancer receives the request and forwards it to a free API Gateway instance  
+3. Authorization starts via AuthServer (JWT token is generated, pushToken is stored in Redis)  
+4. API Gateway queries ServiceRegistry to get the IP of the required microservice  
+5. ServiceRegistry returns the address  
+6. API Gateway forwards the request to the appropriate microservice  
+7. User lands on the main page and can navigate between screens  
+8. On navigating to another page, API Gateway and ServiceRegistry check the user token again  
+9. For catalog searches, ElasticSearch is used for faster access  
+10. If the user had items in the cart that were not paid for  
+11. Cart emits an "order not completed" event to Kafka  
+12. Notification Service, subscribed to the topic, retrieves the pushToken from Redis and forwards the message to Delivery Workers  
+13. Delivery Workers make an HTTP request to the external Push Provider  
+14. If delivery fails after several retries, the message goes to DLQ  
+15. If successful, Push Provider delivers the notification to the user’s device
