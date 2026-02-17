@@ -16,10 +16,21 @@
 
 ---
 
-**CONTEXT:**
-- Application - mobile app for an online grocery store  
-- Backend - microservices architecture
-- The diagram shows the flow of push notifications from the backend services to the user device  
+### ⚙️ Non-Functional Requirements
+
+- Delivery latency: ≤ 5 seconds
+- Throughput: up to 50k notifications/min
+- Availability: 99.9%
+- Retry policy: exponential backoff
+- Monitoring: delivery success rate tracking
+
+### 🚨 Risks
+
+- Push provider rate limits
+- Device token invalidation
+- Notification delivery delays under peak load
+
+---
 
 **ARCHITECTURE INCLUDES:**
 - Microservices
