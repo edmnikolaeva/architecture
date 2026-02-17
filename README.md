@@ -4,6 +4,14 @@
 
 ---
 
+### 🧩 Business Context
+- **Problem:** mobile app requires reliable push notification delivery
+- **Solution:** designed high-level architecture for push delivery pipeline
+- **My role:** system analysis, architecture modeling, API design
+- **Result:** defined scalable notification flow supporting high-load delivery
+
+---
+
 ### 👉 [View block diagram](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
 
 ---
