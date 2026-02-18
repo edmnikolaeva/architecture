@@ -6,7 +6,6 @@
 
 ### 👉 [Push Notifications Architecture](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
 
-
 ---
 
 ### 🧩 Business Context
@@ -60,3 +59,7 @@
 13. Delivery Workers make an HTTP request to the external Push Provider  
 14. If delivery fails after several retries, the message goes to DLQ  
 15. If successful, Push Provider delivers the notification to the user’s device
+
+---
+
+### [Sorry, Mario, but our C4 Model is in another repository](https://github.com/edmnikolaeva/C4)
