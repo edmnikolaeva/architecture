@@ -1,6 +1,11 @@
-# Push Notifications Architecture – System Analysis Examples
+## Push Notifications Architecture – System Analysis Examples
 - This repository presents a high-level architecture diagram of push notification delivery in a mobile application, illustrated as a block diagram
 - This diagram helps to understand how push notifications are processed and delivered in a microservices backend, ensuring reliability and scalability
+
+---
+
+### 👉 [Push Notifications Architecture](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
+
 
 ---
 
@@ -9,10 +14,6 @@
 - **Solution:** designed high-level architecture for push delivery pipeline
 - **My role:** system analysis, architecture modeling, API design
 - **Result:** defined scalable notification flow supporting high-load delivery
-
----
-
-### 👉 [View block diagram](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
 
 ---
 
