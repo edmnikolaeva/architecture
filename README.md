@@ -1,7 +1,21 @@
 # Push Notifications Architecture – System Analysis Examples
+
+<table>
+<tr>
+<td>
+
 - Event-driven push notification pipeline for mobile grocery app 
 - The solution demonstrates how push notifications can be processed and delivered in a microservices backend
 - Focus: scalability, async delivery, fault tolerance
+
+</td>
+<td width="220">
+<img src="https://github.com/edmnikolaeva/architecture/blob/main/push.png" 
+     alt="Visual Anchor — Main Screen Prototype" 
+     width="200"/>
+</td>
+</tr>
+</table>
 
 ---
 
