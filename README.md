@@ -1,4 +1,4 @@
-# Push Notifications Architecture – System Analysis Examples
+# Push Notifications Architecture
 
 <table>
 <tr>
