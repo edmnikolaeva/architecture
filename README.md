@@ -1,22 +1,50 @@
-## Push Notifications Architecture – System Analysis Examples
-- This repository presents a high-level architecture diagram of push notification delivery in a mobile application, illustrated as a block diagram
-- This diagram helps to understand how push notifications are processed and delivered in a microservices backend, ensuring reliability and scalability
+# Push Notifications Architecture – System Analysis Examples
+- Event-driven push notification pipeline for mobile grocery app 
+- The solution demonstrates how push notifications can be processed and delivered in a microservices backend
+- Focus: scalability, async delivery, fault tolerance
 
 ---
 
-### 👉 [Push Notifications Architecture](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
+### Main artifact 👉 [Push Notifications Architecture](https://github.com/edmnikolaeva/architecture/blob/main/push_notifications_architecture.txt) 
 
 ---
 
 ### 🧩 Business Context
-- **Problem:** mobile app requires reliable push notification delivery
-- **Solution:** designed high-level architecture for push delivery pipeline
-- **My role:** system analysis, architecture modeling, API design
-- **Result:** defined scalable notification flow supporting high-load delivery
+- **Domain:** online grocery e-commerce
+- **Goal:** recover abandoned carts, notify on order changes, run targeted promotions  
+- **Initiative:** implement a reliable push notification system in the mobile app to boost user engagement 
+
+---
+
+**Business Value**  
+- Increased recovery of abandoned carts → higher conversion rate  
+- Faster reaction to order issues → reduced cancellations & support load  
+- More effective marketing → improved LTV and retention  
+- Better user experience through timely & relevant communication
+
+---
+
+**Key triggers**  
+- Abandoned cart reminders (order sitting too long without checkout)  
+- Order status changes (cancellations, delivery delays, etc.)  
+- Personalized promotions & marketing campaigns  
+- Other event-driven triggers (restocks, favorite product discounts, etc.)
+  
+---
+
+
+**Solution**
+- Event-driven architecture for better scalability  
+- Asynchronous delivery to protect core services  
+- DLQ ensures failed messages are not lost  
+- Redis is used for fast token access  
+- Kafka enables loose coupling between services
 
 ---
 
 ### ⚙️ Non-Functional Requirements
+
+> Values below reflect design assumptions based on typical industry targets
 
 - Delivery latency: ≤ 5 seconds
 - Throughput: up to 50k notifications/min
@@ -24,15 +52,26 @@
 - Retry policy: exponential backoff
 - Monitoring: delivery success rate tracking
 
+---
+
 ### 🚨 Risks
 
-- Push provider rate limits
-- Device token invalidation
-- Notification delivery delays under peak load
+- Over-notification may reduce user engagement
+- Provider rate limits → backoff + priority queues  
+- Token invalidation → periodic cleanup + 404/410 handling  
+- Peak load → horizontal worker scaling
 
 ---
 
-**ARCHITECTURE INCLUDES:**
+## 👩‍💼 My Role
+ 
+- Problem analysis & high-level design  
+- Flow modeling & component identification  
+- Non-functional & risk assessment
+  
+---
+
+**ARCHITECTURE INCLUDES**
 - Microservices
 - Load Balancer
 - API Gateway
@@ -43,23 +82,19 @@
 - Delivery Workers
 - Push Provider
 
-**STEPS:**
-1. User opens the mobile application  
-2. Load Balancer receives the request and forwards it to a free API Gateway instance  
-3. Authorization starts via AuthServer (JWT token is generated, pushToken is stored in Redis)  
-4. API Gateway queries ServiceRegistry to get the IP of the required microservice  
-5. ServiceRegistry returns the address  
-6. API Gateway forwards the request to the appropriate microservice  
-7. User lands on the main page and can navigate between screens  
-8. On navigating to another page, API Gateway and ServiceRegistry check the user token again  
-9. For catalog searches, ElasticSearch is used for faster access  
-10. Perhaps user had items in the cart that were not paid for  
-11. Cart create an "order not completed" event and forward it to Kafka  
-12. Notification Service, subscribed to the topic, "hears" this, retrieves the message, gets pushToken from Redis and forwards the message to Delivery Workers  
-13. Delivery Workers make an HTTP request to the external Push Provider  
-14. If delivery fails after several retries, the message goes to DLQ  
-15. If successful, Push Provider delivers the notification to the user’s device
+**Core Workflow:**
+1. User authenticates → push token saved to Redis  
+2. Business event occurs (e.g. abandoned cart) → Kafka  
+3. Notification Service consumes event → fetches token  
+4. Enqueues payload to Delivery Workers  
+5. Workers send to Push Provider
+6. Success → push delivered to the user device
+7. Failure → retry → DLQ after max attempts
 
 ---
 
-### [Sorry, Mario, but our C4 Model is in another repository](https://github.com/edmnikolaeva/C4)
+## 🔗 Related Artifact
+
+> Sorry, Mario, but our C4 Model is in another repository 
+
+👉 [C4 Model Repository](https://github.com/edmnikolaeva/C4)
