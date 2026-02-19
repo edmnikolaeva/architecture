@@ -77,7 +77,7 @@
 
 ---
 
-## 👩‍💼 My Role
+### 👩‍💼 My Role
  
 - Problem analysis & high-level design  
 - Flow modeling & component identification  
@@ -107,7 +107,7 @@
 
 ---
 
-🔗 Related Artifact
+### 🔗 Related Artifact
 
 > Sorry, Mario, but our C4 Model is in another repository 
 
