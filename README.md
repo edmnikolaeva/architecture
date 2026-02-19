@@ -107,8 +107,8 @@
 
 ---
 
-## 🔗 Related Artifact
+🔗 Related Artifact
 
 > Sorry, Mario, but our C4 Model is in another repository 
 
-👉 [C4 Model Repository](https://github.com/edmnikolaeva/C4)
+👉 [C4 Model](https://github.com/edmnikolaeva/C4)
