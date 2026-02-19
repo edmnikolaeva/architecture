@@ -111,4 +111,7 @@
 
 > Sorry, Mario, but our C4 Model is in another repository 
 
-👉 [C4 Model](https://github.com/edmnikolaeva/C4)
+- 👉 [C4 Model](https://github.com/edmnikolaeva/C4)
+- 👉 [JSON](https://github.com/edmnikolaeva/json)  
+- 👉 [REST](https://github.com/edmnikolaeva/rest)
+- 👉 [XML & SOAP](https://github.com/edmnikolaeva/xml)
