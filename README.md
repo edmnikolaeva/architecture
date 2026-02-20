@@ -107,7 +107,7 @@
 
 ---
 
-### 🔗 Related Artifacts
+### 🔎 Related Work
 
 > Sorry, Mario, but our C4 Model is in another repository 
 
